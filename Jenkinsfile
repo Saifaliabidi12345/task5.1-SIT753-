@@ -10,34 +10,34 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Fetching source code from: ${DIRECTORY_PATH}"
-                echo "Compile the code and generate artifacts."
+                echo "Retrieving source code from directory: ${CODE_DIR_PATH}"
+                echo "Building the source code and creating components."
             }
         }
 
         stage('Test') {
             steps {
-                echo "Performing unit tests."
-                echo "Performing integration tests."
+                echo "Executing unit validations."
+                echo "Executing system/integration validations."
             }
         }
 
         stage('Code Quality Check') {
             steps {
-                echo "Checking code quality."
+                echo "Checking source code integrity."
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploying to: ${TESTING_ENVIRONMENT}"
+                echo "Initiating deployment to: ${TEST_ENV_NAME}"
             }
         }
 
         stage('Approval') {
             steps {
                 script {
-                    echo 'Waiting for approval...'
+                    echo 'Paused for approval...'
                     sleep(time: 10, unit: 'SECONDS')
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                echo "Deploying to Production: ${PRODUCTION_ENVIRONMENT}"
+                echo "Pushing to Live Environment: ${LIVE_ENV_NAME}"
             }
         }
     }
